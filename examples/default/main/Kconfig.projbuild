@@ -7,5 +7,5 @@ menu "Example configuration"
             I2C address of TSL2561. The default is `TSL2561_I2C_ADDR_FLOAT`, or
             0x39. See available options in datasheet.
 
-    rsource "../../../../devtools/Kconfig.i2c"
+    rsource "../../../Kconfig.i2c"
 endmenu
