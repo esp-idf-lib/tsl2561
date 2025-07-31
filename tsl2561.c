@@ -207,7 +207,7 @@ esp_err_t tsl2561_init_desc(tsl2561_t *dev, uint8_t addr, i2c_port_t port, gpio_
     if (addr != TSL2561_I2C_ADDR_GND && addr != TSL2561_I2C_ADDR_FLOAT && addr != TSL2561_I2C_ADDR_VCC)
     {
         ESP_LOGE(TAG, "Invalid I2C address `0x%x`: must be one of 0x%x, 0x%x, 0x%x",
-                addr, TSL2561_I2C_ADDR_GND, TSL2561_I2C_ADDR_FLOAT, TSL2561_I2C_ADDR_VCC);
+                 addr, TSL2561_I2C_ADDR_GND, TSL2561_I2C_ADDR_FLOAT, TSL2561_I2C_ADDR_VCC);
         return ESP_ERR_INVALID_ARG;
     }
 
@@ -237,7 +237,7 @@ esp_err_t tsl2561_init(tsl2561_t *dev)
     I2C_DEV_CHECK(&dev->i2c_dev, enable(dev));
     uint8_t control_reg;
     I2C_DEV_CHECK(&dev->i2c_dev, read_register(dev, TSL2561_REG_CONTROL, &control_reg));
-    if ((control_reg & TSL2561_ON)!= TSL2561_ON)
+    if ((control_reg & TSL2561_ON) != TSL2561_ON)
     {
         ESP_LOGE(TAG, "Error initializing tsl2561, control register wasn't set to ON");
         I2C_DEV_GIVE_MUTEX(&dev->i2c_dev);
@@ -331,7 +331,7 @@ esp_err_t tsl2561_read_lux(tsl2561_t *dev, uint32_t *lux)
     // Protect against divide by zero
     uint32_t ratio1 = 0;
     if (channel0 != 0)
-        ratio1 = (channel1 << (RATIO_SCALE+1)) / channel0;
+        ratio1 = (channel1 << (RATIO_SCALE + 1)) / channel0;
 
     // Round the ratio value
     uint32_t ratio = (ratio1 + 1) >> 1;
